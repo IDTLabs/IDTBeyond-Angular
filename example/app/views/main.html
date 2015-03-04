@@ -10,7 +10,7 @@
 
   <!-- Message area -->
   <div ng-show="vm.message">
-    <p 
+    <p
     	class="alert"
     	ng-class="{'alert-danger': vm.alertDanger, 'alert-success': vm.alertSuccess, 'alert-info': vm.alertInfo, 'alert-warning': vm.alertWarning}">
       {{ vm.message }}
@@ -26,7 +26,7 @@
       <div>
         <label class="control-label">Country:</label>
       </div>
-        <select 
+        <select
           class="form-control"
           ng-model="vm.selectedCountryCode"
           ng-options="k as v for (k, v) in vm.countries"
@@ -39,20 +39,20 @@
       <div>
         <label class="control-label">Carrier:</label>
       </div>
-        <select 
+        <select
           class="form-control"
-          ng-model="vm.selectedCarrierCode" 
+          ng-model="vm.selectedCarrierCode"
           ng-options="k as k for (k, v) in vm.products[vm.selectedCountryCode]"
           ng-change="vm.resetCarrierValues()">
         	 <option class='hidden' value="">select a carrier</option>
         </select>
     </div><!-- carrier -->
-    
-    <div class="form-group col-md-12 col-sm-12" ng-if="!vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].openRange">
+
+    <div class="form-group col-md-8 col-sm-8 col-xs-12 col-lg-8" ng-if="!vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].openRange">
       <div>
         <label class="control-label">Topup Amount:</label>
       </div>
-        <select 
+        <select
         	class="form-control"
         	ng-model="vm.selectedAmount"
         	ng-options="v.minDenomination as v.minDenomination  for (k, v) in vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].values">
@@ -60,24 +60,27 @@
     		</select>
       </div><!-- amount -->
 
+    <div
+      class="form-group col-md-4 col-sm-4 col-xs-12 col-lg-4"
+      ng-show="!vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].openRange">
+      <div>
+        <div>
+          <label class="control-label" ng-show="vm.selectedAmount && !vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].openRange">Lookup Local Value:</label>
+        </div>
+        <button
+          type="button"
+          class="btn btn-info btn-md pull-left"
+          ng-click="vm.getLocalValue()"
+          ng-disabled ="!vm.selectedAmount"
+          ng-show="vm.selectedAmount && !vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].openRange">
+          <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Get Local Value</button>
+      </div>
+    </div><!-- local value -->
+
     <div class="form-group col-md-12 col-sm-12" ng-if="vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].openRange">
         <label class="control-label">Enter Amount: between {{ vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].minDenomination }} and {{ vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].maxDenomination }}</label>
         <input type="text" ng-model="vm.selectedAmount" class="form-control" />
     </div><!-- custom amount on open range products -->
-
-    <div 
-    	class="form-group col-md-12 col-sm-12" 
-    	ng-show="!vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].openRange">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <button 
-          	type="button"
-          	class="btn btn-info btn-md pull-right"
-          	ng-click="vm.getLocalValue()"
-          	ng-disabled ="!vm.selectedAmount"
-          	ng-show="vm.selectedAmount && !vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].openRange">
-            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Get Local Value</button>
-        </div>
-    </div><!-- local value -->
 
     <div class="form-group col-md-12 col-sm-12">
       <div>
@@ -91,15 +94,15 @@
         </div><!-- /input-group -->
     </div><!-- number -->
 
-    <button 
-      class="btn btn-success btn-lg pull-right" 
-      ng-click="vm.prepareTopup()" 
+    <button
+      class="btn btn-success btn-lg pull-right"
+      ng-click="vm.prepareTopup()"
       ng-disabled="vm.allowValidation()"
       ng-hide="vm.topUpPrepared">
-      <span 
-          class="glyphicon glyphicon-phone" 
+      <span
+          class="glyphicon glyphicon-phone"
           aria-hidden="true">
-      </span> 
+      </span>
       Prepare Topup
     </button>
 
