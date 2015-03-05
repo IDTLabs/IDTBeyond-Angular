@@ -15,7 +15,14 @@ angular.module('idtbeyondAngularDemoApp')
         'x-idt-beyond-app-key': (localStorageService.get('appKey')) ? localStorageService.get('appKey') :''
       };
     };
-
+    
+    /************************************************************************************************************
+     *  planType is a variable that will determine if you are pointing to eaither your sandbox account or
+     * your production account, it will default to sandbox, if you visit the settings page and click the 
+     * checkbox for plan: Production [x] it will then set the data in local storage and overwrite this 
+     * default.
+     ************************************************************************************************************/
+    var planType = (localStorageService.get('planType')) ? 'Production' : 'Sandbox';
     var url = 'https://api.idtbeyond.com';
     var headers = setHeaders();
     var termId = (localStorageService.get('termId')) ? localStorageService.get('termId') : '';
@@ -68,13 +75,12 @@ angular.module('idtbeyondAngularDemoApp')
         {'country_code': params.countryCode,
           'carrier_code': params.carrierCode,
           'mobile_number': params.phoneNumber,
-          'plan':'Sandbox',
+          'plan': planType,
           'amount': params.amount,
           'client_transaction_id': generateClientTransactionId(),
           'terminal_id': termId
         },
         {headers : headers}
       );
-
     };
   });

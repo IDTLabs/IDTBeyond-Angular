@@ -10,6 +10,11 @@
 angular.module('idtbeyondAngularDemoApp')
   .controller('MainCtrl', function (IdtBeyond) {
     var vm = this;
+    vm.products = {};
+    vm.countries = {};
+
+    vm.inDevMode = IdtBeyond.developmentMode();
+    vm.appDetailsSet = IdtBeyond.credentialsSet();
 
     var setAlertLevel = function(level){
 		switch (level){
@@ -46,9 +51,7 @@ angular.module('idtbeyondAngularDemoApp')
 		}
 	};
 
-    vm.products = {};
     var resetAllValues = function(){
-      vm.countries = {};
       vm.selectedCountryCode = '';
       vm.selectedCarrierCode = '';
       vm.selectedAmount = '';
@@ -59,11 +62,8 @@ angular.module('idtbeyondAngularDemoApp')
       vm.localValueAmount = '';
       vm.localValueCurrency = '';
       vm.localValueResults = '';
+      vm.validatePhoneResponse = '';
     };
-
-    vm.inDevMode = IdtBeyond.developmentMode();
-
-    vm.appDetailsSet = IdtBeyond.credentialsSet();
 
     vm.productsSet = function(){
       return !angular.equals({}, vm.products);
@@ -94,6 +94,7 @@ angular.module('idtbeyondAngularDemoApp')
           }
         });
       }
+      
       IdtBeyond.getLocalValue({
         carrierCode: vm.selectedCarrierCode,
         countryCode: vm.selectedCountryCode,
@@ -171,9 +172,6 @@ angular.module('idtbeyondAngularDemoApp')
     };
 
     vm.prepareTopup = function(){
-      vm.message = '';
-      vm.topUpPrepared = true;
-
       if (!vm.phoneNumberValidated){
         vm.message = 'Please validate the phone number before preparing topup.';
         setAlertLevel('danger');
@@ -184,6 +182,7 @@ angular.module('idtbeyondAngularDemoApp')
         setAlertLevel('danger');
         return;
       }
+      vm.topUpPrepared = true;
       return;
     };
 
@@ -191,7 +190,14 @@ angular.module('idtbeyondAngularDemoApp')
       vm.message = '';
       setAlertLevel();
     };
+    vm.resetCarrierValues = function(all){
+      if (all){
+        vm.selectedCarrierCode = '';
+      }
+      vm.selectedAmount = '';
+    };
 
+    // On instantiation of the controller when the page loads it will run all the below functions once.
     resetAllValues();
 
     if (vm.appDetailsSet){
@@ -223,11 +229,4 @@ angular.module('idtbeyondAngularDemoApp')
         vm.products = products;
       });
     }
-		vm.resetCarrierValues = function(all){
-			if (all){
-				vm.selectedCarrierCode = '';
-			}
-			vm.selectedAmount = '';
-		};
-
   });

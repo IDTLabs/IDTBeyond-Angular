@@ -24,13 +24,24 @@
     </div>
     <div class="form-group">
       <label for="dev-mode"> Development Mode : </label>
-      <input id="dev-mode" name="dev-mode" type="checkbox" ng-model="vm.developmentMode" name="development-mode" />
+      <input id="dev-mode" name="dev-mode" type="checkbox" ng-model="vm.developmentMode" />
+    </div>
+ 
+    <div class="form-group">
+      <label for="plan-mode"> Plan Type: </label>
+      <select id="plan-mode" name="plan-mode" ng-model="vm.planType">
+        <option 
+          ng-repeat="(key, value) in ['Sandbox', 'Production']" 
+          value="{{ key }}"
+          ng-selected="vm.planType == key">{{ value }}
+        </option>
+      </select>
     </div>
     <div>
       <button class="btn btn-primary pull-right" ng-click="vm.saveAppDetails()">
         <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Save</button>
-      <button class="btn btn-danger pull-left" ng-click="vm.clearApplicationData()">
-        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Clear</button>
+      <button class="btn btn-danger pull-left" ng-click="vm.resetApplicationData()">
+        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Reset</button>
     </div>
   </form>
 </div>
