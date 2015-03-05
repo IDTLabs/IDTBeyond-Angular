@@ -22,7 +22,7 @@
   <!-- Topup form -->
   <form name="vm.form.topup" ng-show="vm.productsSet()">
 
-    <div class="form-group col-md-12 col-sm-12">
+    <div class="form-group col-md-12 col-sm-12 col-xs-12 col-lg-12">
       <div>
         <label class="control-label">Country:</label>
       </div>
@@ -35,7 +35,7 @@
       </select>
     </div><!-- country -->
 
-    <div class="form-group col-md-12 col-sm-12">
+    <div class="form-group col-md-12 col-sm-12 col-xs-12 col-lg-12">
       <div>
         <label class="control-label">Carrier:</label>
       </div>
@@ -48,7 +48,8 @@
         </select>
     </div><!-- carrier -->
 
-    <div class="form-group col-md-8 col-sm-8 col-xs-12 col-lg-8" ng-if="!vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].openRange">
+    <div class="form-group col-md-8 col-sm-8 col-xs-12 col-lg-8"
+         ng-if="!vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].openRange">
       <div>
         <label class="control-label">Topup Amount:</label>
       </div>
@@ -60,8 +61,7 @@
     		</select>
       </div><!-- amount -->
 
-    <div
-      class="form-group col-md-4 col-sm-4 col-xs-12 col-lg-4"
+    <div class="form-group col-md-4 col-sm-4 col-xs-12 col-lg-4"
       ng-show="!vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].openRange">
       <div>
         <div>
@@ -77,12 +77,15 @@
       </div>
     </div><!-- local value -->
 
-    <div class="form-group col-md-12 col-sm-12" ng-if="vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].openRange">
+    <div class="form-group col-md-12 col-sm-12 col-xs-12 col-lg-12"
+         ng-if="vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].openRange">
+      <div>
         <label class="control-label">Enter Amount: between {{ vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].minDenomination }} and {{ vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].maxDenomination }}</label>
-        <input type="text" ng-model="vm.selectedAmount" class="form-control" />
+      </div>
+      <input type="text" ng-model="vm.selectedAmount" class="form-control" />
     </div><!-- custom amount on open range products -->
 
-    <div class="form-group col-md-12 col-sm-12">
+    <div class="form-group col-md-12 col-sm-12 col-xs-12 col-lg-12">
       <div>
         <label class="control-label">Phone Number:</label>
       </div>
@@ -110,66 +113,58 @@
 
   <!-- End of entry form -->
 
-  <!-- Validation of the transaction -->
-  <div ng-show="vm.topUpPrepared">
-    <div class="topup-receipt" ng-show="vm.topUpPrepared">
-      <span>Country : {{ vm.countries[vm.selectedCountryCode]}}</span>
-      <span>Carrier : {{ vm.selectedCarrierCode }}</span>
-      <span>Amount : {{ vm.selectedAmount }} | {{ vm.localValueAmount }} {{ vm.localValueCurrency }}</span>
-      <span>Phone Number: {{ vm.phoneNumber }}</span>
-      <p>
-        <button class="btn btn-warning btn-md" ng-click="vm.resetAllValues()">Reset</button>
-        <button class="btn btn-danger btn-md" ng-click="vm.cancelTopup()">Cancel</button>
-        <button class="btn btn-success btn-md" ng-click="vm.submitTopup()">Submit Topup</button>
-      </p>
-    </div>
-  </div>
-  <!-- Validation of the transaction -->
 </div>
 <!-- end of Topup form -->
 
-<!-- Developer area -->
-<div ng-show="vm.selectedCountryCode && vm.inDevMode">
-  <div ng-if="vm.selectedCountryCode && vm.inDevMode">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Country Code</h3>
-      </div>
-      <div class="panel-body">
-        <strong>"country_code"</strong> = "{{ vm.selectedCountryCode }}"
-      </div>
-    </div>
+<!-- Validation of the transaction -->
+
+<div class="panel panel-success" ng-show="vm.topUpPrepared">
+  <div class="panel-heading">
+    <h3 class="panel-title">Transaction Review</h3>
+  </div>
+  <div class="panel-body">
+    <div><strong>Country: </strong>{{ vm.countries[vm.selectedCountryCode]}}</div>
+    <div><strong>Carrier: </strong>{{ vm.selectedCarrierCode }}</div>
+    <div><strong>Amount: </strong>{{ vm.selectedAmount }}</div>
+    <div><strong>Phone Number: </strong>{{ vm.phoneNumber }}</div>
+  </div>
+  <div class="panel-footer">
+        <button class="btn btn-warning btn-md" ng-click="vm.resetAllValues()">Reset</button>
+        <button class="btn btn-danger btn-md" ng-click="vm.cancelTopup()">Cancel</button>
+        <button class="btn btn-success btn-md pull-right" ng-click="vm.submitTopup()">Submit Topup</button>
   </div>
 </div>
 
-<div ng-show="vm.selectedCarrierCode && vm.inDevMode">
-  <div ng-if="vm.selectedCarrierCode && vm.inDevMode">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Carrier Code</h3>
-      </div>
-      <div class="panel-body">
-        <strong>"carrier_code"</strong> = "{{ vm.selectedCarrierCode }}"
-      </div>
-    </div>
-  </div>
+<!-- Validation of the transaction -->
+
+<!-- developer area -->
+
+<div ng-show="vm.inDevMode">
+  <hr>
+  <H3>Developer Mode:</H3>
 </div>
 
-<div ng-show="vm.selectedAmount && vm.inDevMode">
-  <div ng-if="vm.selectedAmount && vm.inDevMode">
+<!-- responses -->
+
+<div ng-show="vm.validatePhoneResponse && vm.inDevMode">
+  <div>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Amount</h3>
+        <h3 class="panel-title">Phone number validation</h3>
       </div>
       <div class="panel-body">
-        <strong>"amount"</strong> = "{{ vm.selectedAmount }}"
+        <pre>
+          <code>
+            {{ vm.validatePhoneResponse || json }}
+          </code>
+        </pre>
       </div>
     </div>
   </div>
-</div>
+</div><!-- validate_phone -->
 
 <div ng-show="vm.localValueResults && vm.inDevMode">
-  <div ng-if="vm.localValueCurrency && vm.localValueAmount && vm.inDevMode">
+  <div>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Local value lookup</h3>
@@ -179,31 +174,53 @@
         <code>{{ vm.localValueResults | json }}</code>
       </pre>
         <p>
-          <b>Note:</b> The Amount in Local Currency is an estimate provided by IDT to its customers for informational purposes only and may not equal the actual amount received by the end user in the applicable Country. IDT uses the foreign exchange rates posted on the website www.Oanda.com to provide this estimate. The estimate does not include any fees or taxes charged by the applicable Carrier upon conversion into the local currency. The actual amount received by the end user in the applicable Country, any fees or taxes applied to the conversion, and the actual foreign exchange rate used is determined and established by the applicable Carrier. IDT is not responsible for determining the actual amount received by the end user or for any discrepancy between the Amount in Local Currency estimate provided and the actual amount received by the end user.
+          <b>Note:</b> The Amount in Local Currency is an estimate provided by YOURCOMPANYNAME to its customers for informational purposes only and may not equal the actual amount received by the end user in the applicable Country. YOURCOMPANYNAME uses the foreign exchange rates posted on the website www.Oanda.com to provide this estimate. The estimate does not include any fees or taxes charged by the applicable Carrier upon conversion into the local currency. The actual amount received by the end user in the applicable Country, any fees or taxes applied to the conversion, and the actual foreign exchange rate used is determined and established by the applicable Carrier. YOURCOMPANYNAME is not responsible for determining the actual amount received by the end user or for any discrepancy between the Amount in Local Currency estimate provided and the actual amount received by the end user.
         </p>
       </div>
     </div>
   </div>
-</div>
+</div><!-- local_value -->
 
-<div ng-show="vm.validatePhoneResponse && vm.inDevMode">
-  <div ng-if="vm.validatePhoneResponse && vm.inDevMode">
+<div ng-show="vm.selectedAmount && vm.inDevMode">
+  <div>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Phone number validation</h3>
+        <h3 class="panel-title">Amount</h3>
       </div>
       <div class="panel-body">
-        <code>
-          {{ vm.validatePhoneResponse || json }}
-        </code>
+        <strong>"amount"</strong> = "{{ vm.selectedAmount }}"
       </div>
     </div>
   </div>
-</div>
+</div><!-- amount -->
 
-  <!-- Product list loaded to generate the dropdown list -->
+<div ng-show="vm.selectedCarrierCode && vm.inDevMode">
+  <div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Carrier Code</h3>
+      </div>
+      <div class="panel-body">
+        <strong>"carrier_code"</strong> = "{{ vm.selectedCarrierCode }}"
+      </div>
+    </div>
+  </div>
+</div><!-- carrier_code -->
+
+<div ng-show="vm.selectedCountryCode && vm.inDevMode">
+  <div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Country Code</h3>
+      </div>
+      <div class="panel-body">
+        <strong>"country_code"</strong> = "{{ vm.selectedCountryCode }}"
+      </div>
+    </div>
+  </div>
+</div><!-- country_code -->
+
 <div ng-show="vm.products && vm.inDevMode">
-  <span ng-if="vm.products && vm.inDevMode">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Product List</h3>
@@ -216,6 +233,6 @@
         </pre>
       </div>
     </div>
-  </span>
-</div>
-  <!-- end of product list area -->
+</div><!-- Products loaded and modified to generate the drop-down lists -->
+
+<!-- end of developer area -->
