@@ -11,7 +11,7 @@ angular.module('idtbeyondAngularDemoApp')
   .controller('SettingsCtrl', function (localStorageService, IdtBeyond, $timeout) {
 
   var redirectToHome = function(){
-    $timeout( function(){ 
+    $timeout( function(){
       window.location.href = '/';
     }, 3000);
   };
@@ -48,7 +48,7 @@ angular.module('idtbeyondAngularDemoApp')
         vm.alertInfo = false;
         vm.alertWarning = false;
         return;
-    }	
+    }
   };
 
     var resetDataAndMessage = function(message, alertType){
@@ -69,7 +69,7 @@ angular.module('idtbeyondAngularDemoApp')
           setAlertLevel('success');
       }
     };
-	
+
     // Variables setup to be used in the browser off the controller object vm.
     var vm = this;
     vm.appId = localStorageService.get('appId');
@@ -95,7 +95,7 @@ angular.module('idtbeyondAngularDemoApp')
 
     vm.saveAppDetails = function(){
       if(!vm.appId || !vm.appKey || !vm.termId){
-        resetDataAndMessage('App ID, App Key, Plan Type & Term ID must all be filled in. Re-enter application details.', 'danger');
+        resetDataAndMessage('App ID, App Key & Term ID must all be filled in. Re-enter application details.', 'danger');
         return;
       }
       if (!localStorageService.set('appId', vm.appId)){
