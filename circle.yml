@@ -1,8 +1,12 @@
+dependencies:
+  cache_directories:
+    - '/home/ubuntu/IDTBeyond-Angular/example/node_modules'
+    - '/home/ubuntu/IDTBeyond-Angular/example/bower_components '
 checkout:
   post:
-    - cd example && npm install
-    - cd example && bower install
+    - cd /home/ubuntu/IDTBeyond-Angular/example && npm install
+    - cd /home/ubuntu/IDTBeyond-Angular/example && bower install
 
 test:
   override:
-    - cd example && grunt test
+    - cd /home/ubuntu/IDTBeyond-Angular/example && grunt test
