@@ -5,6 +5,8 @@ This is an example Angular application for the IDT Beyond API.
 
 [![Join the chat at https://gitter.im/IDTLabs/IDTBeyond-Angular](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/IDTLabs/IDTBeyond-Angular?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+[![Circle CI](https://circleci.com/gh/IDTLabs/IDTBeyond-Angular/tree/master.svg?style=svg)](https://circleci.com/gh/IDTLabs/IDTBeyond-Angular/tree/master)
+
 ## Getting started with IDT Beyond
 
 To use this service, sign up for a free account at: [https://portal.idtbeyond.com](https://portal.idtbeyond.com), or read the documentation at [https://portal.idtbeyond.com/docs](https://portal.idtbeyond.com/docs).
