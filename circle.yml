@@ -1,0 +1,8 @@
+checkout:
+  post:
+    - cd example && npm install
+    - cd example && bower install
+
+test:
+  override:
+    - cd example && grunt test
