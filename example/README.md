@@ -1,4 +1,4 @@
-# idtbeyond-angular
+# Instructions
 
 This is an example Angular application for the IDT Beyond API. 
 
