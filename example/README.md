@@ -1,5 +1,9 @@
 # idtbeyond-angular
 
+This is an example Angular application for the IDT Beyond API. 
+
+To use this service, sign up for a free account at: [https://portal.idtbeyond.com](https://portal.idtbeyond.com), or read the documentation at [https://portal.idtbeyond.com/docs](https://portal.idtbeyond.com/docs).
+
 ## Requirements
 
 - [npm](https://www.npmjs.com/)
@@ -9,7 +13,7 @@
 ## Setup your environment
 
 1. Make sure above requirements are fulfilled. (see site documentation in links above)
-2. Change to the project's root directory.
+2. Within the project's root directory, `cd ./example`
 3. `npm install`
 4. `bower install`
 5. `grunt`
