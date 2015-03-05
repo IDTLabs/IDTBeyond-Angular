@@ -1,7 +1,7 @@
 dependencies:
   cache_directories:
-    - '/home/ubuntu/IDTBeyond-Angular/example/node_modules'
-    - '/home/ubuntu/IDTBeyond-Angular/example/bower_components '
+    - 'example/node_modules'
+    - 'example/bower_components '
 checkout:
   post:
     - cd /home/ubuntu/IDTBeyond-Angular/example && npm install
