@@ -1,10 +1,13 @@
-# Instructions
+IDTBeyond Angular Demo App
+========
 
 This is an example Angular application for the IDT Beyond API. 
 
-To use this service, sign up for a free account at: [https://portal.idtbeyond.com](https://portal.idtbeyond.com), or read the documentation at [https://portal.idtbeyond.com/docs](https://portal.idtbeyond.com/docs).
-
 [![Join the chat at https://gitter.im/IDTLabs/IDTBeyond-Angular](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/IDTLabs/IDTBeyond-Angular?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+## Getting started with IDT Beyond
+
+To use this service, sign up for a free account at: [https://portal.idtbeyond.com](https://portal.idtbeyond.com), or read the documentation at [https://portal.idtbeyond.com/docs](https://portal.idtbeyond.com/docs).
 
 ## Requirements
 
@@ -24,6 +27,9 @@ To use this service, sign up for a free account at: [https://portal.idtbeyond.co
 ## Build & development
 
 Run `grunt` for building and `grunt serve` for preview.
+
+![idt-beyond_iatu-example](https://cloud.githubusercontent.com/assets/2286035/6511765/dd686dca-c33c-11e4-92a1-efab86af4e1e.png)
+![idt-beyond_iatu-settings](https://cloud.githubusercontent.com/assets/2286035/6511766/dd688df0-c33c-11e4-8af6-2fe3b0247c4c.png)
 
 ## Testing
 
