@@ -10,11 +10,16 @@ describe('Directive: butterBar', function () {
 
   beforeEach(inject(function ($rootScope) {
     scope = $rootScope.$new();
+    scope.vm = {
+      message: "testing",
+      alert: {}
+    }
+
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<butter-bar></butter-bar>');
+    element = angular.element('<butter-bar message="vm.message" alert-level="vm.alert"></butter-bar>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the butterBar directive');
+
   }));
 });
