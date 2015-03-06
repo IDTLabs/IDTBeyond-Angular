@@ -4,30 +4,38 @@ describe('Controller: SettingsCtrl', function () {
 
   beforeEach(module('idtbeyondAngularDemoApp'));
 
-  var SettingsCtrl, IdtBeyond, scope, localStorageService;
+  var SettingsCtrl, IdtBeyond, scope, idtBeyondSettings;
   beforeEach(inject(function ($controller) {
-    localStorageService = {
-      get: function(value){
-        switch (value){
-          case 'appId':
-            return 'app-id';
-          case 'appKey':
-            return 'app-key';
-          case 'termId':
-            return 'term-id';
-          case 'developmentMode':
-            return '1';
-          default:
-            return;
-        }
+    idtBeyondSettings = {
+      getAppId: function () {
+        return 'app-id';
       },
-      set: function(value){
-        switch (value){
-          case 'appId':
-            return false;
-          default:
-            return;
-        }
+      getAppKey: function () {
+        return 'app-key';
+      },
+      getTermId: function () {
+        return 'term-id';
+      },
+      getPlanType: function () {
+        return 'plan-type';
+      },
+      getDevelopmentMode: function () {
+        return '1';
+      },
+      setAppId: function () {
+        return false;
+      },
+      setAppKey: function () {
+        return true;
+      },
+      setTermId: function () {
+        return true;
+      },
+      setPlanType: function () {
+        return true;
+      },
+      setDevelopmentMode: function () {
+        return true;
       }
     };
     IdtBeyond = {
@@ -38,7 +46,7 @@ describe('Controller: SettingsCtrl', function () {
     SettingsCtrl = $controller('SettingsCtrl as vm', {
       IdtBeyond: IdtBeyond,
       $scope: scope,
-      localStorageService: localStorageService
+      idtBeyondSettings: idtBeyondSettings
     });
   }));
 
@@ -71,10 +79,9 @@ describe('Controller: SettingsCtrl', function () {
   });
 
   it('should set the message to success when it saves properly', function () {
-    localStorageService.set = function(){
+    idtBeyondSettings.setAppId = function(){
       return true;
     };
-
     expect(scope.vm.message).toBe('');
     scope.vm.saveAppDetails();
     expect(scope.vm.message).toBe('Settings successfully saved.');

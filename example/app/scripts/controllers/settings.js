@@ -8,7 +8,7 @@
  * Controller of the idtbeyondAngularDemoApp
  */
 angular.module('idtbeyondAngularDemoApp')
-  .controller('SettingsCtrl', function (localStorageService, IdtBeyond, $timeout) {
+  .controller('SettingsCtrl', function (idtBeyondSettings, IdtBeyond, $timeout) {
 
   var redirectToHome = function(){
     $timeout( function(){
@@ -72,15 +72,15 @@ angular.module('idtbeyondAngularDemoApp')
     // Variables setup to be used in the browser off the controller object vm.
     var vm = this;
     vm.alert = {};
-    vm.appId = localStorageService.get('appId');
-    vm.appKey = localStorageService.get('appKey');
-    vm.developmentMode = (localStorageService.get('developmentMode')) ? true : false;
-    vm.termId = localStorageService.get('termId');
-    vm.planType = (localStorageService.get('planType')) ? 1 : 0;
+    vm.appId = idtBeyondSettings.getAppId();
+    vm.appKey = idtBeyondSettings.getAppKey();
+    vm.developmentMode = (idtBeyondSettings.getDevelopmentMode()) ? true : false;
+    vm.termId = idtBeyondSettings.getTermId();
+    vm.planType = idtBeyondSettings.getPlanType();
     vm.message = '';
 
     vm.resetApplicationData = function(){
-      localStorageService.clearAll();
+      idtBeyondSettings.clearAll();
       resetDataAndMessage('Application Data cleared.');
       setAlertLevel('info');
       redirectToHome();
@@ -91,24 +91,24 @@ angular.module('idtbeyondAngularDemoApp')
         resetDataAndMessage('App ID, App Key & Term ID must all be filled in. Re-enter application details.', 'danger');
         return;
       }
-      if (!localStorageService.set('appId', vm.appId)){
+      if (!idtBeyondSettings.setAppId(vm.appId)){
         resetDataAndMessage('Saving Application ID failed, please try again.', 'danger');
         return;
       }
-      if (!localStorageService.set('appKey', vm.appKey)){
+      if (!idtBeyondSettings.setAppKey(vm.appKey)){
         resetDataAndMessage('Saving Application Key failed, please try again.', 'danger');
         return;
       }
-      if (!localStorageService.set('termId', vm.termId)){
+      if (!idtBeyondSettings.setTermId(vm.termId)){
         resetDataAndMessage('Saving Terminal ID failed, please try again.', 'danger');
         return;
       }
-      if (!localStorageService.set('planType', vm.planType)){
+      if (!idtBeyondSettings.setPlanType(vm.planType)){
         resetDataAndMessage('Saving Plan Type failed, please try again.', 'danger');
         return;
       }
       var devModeForLocalStorage = (vm.developmentMode) ? 1 : 0;
-      if (!localStorageService.set('developmentMode', devModeForLocalStorage)){
+      if (!idtBeyondSettings.setDevelopmentMode(devModeForLocalStorage)){
         resetDataAndMessage('Saving Application Key failed, please try again.', 'danger');
         return;
       }

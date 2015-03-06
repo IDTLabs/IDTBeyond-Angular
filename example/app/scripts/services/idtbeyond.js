@@ -8,11 +8,11 @@
  * Service in the idtbeyondAngularDemoApp.
  */
 angular.module('idtbeyondAngularDemoApp')
-  .service('IdtBeyond', function ($http, localStorageService) {
+  .service('IdtBeyond', function ($http, idtBeyondSettings) {
     var setHeaders = function(){
       return  {
-        'x-idt-beyond-app-id': (localStorageService.get('appId')) ? localStorageService.get('appId') : '',
-        'x-idt-beyond-app-key': (localStorageService.get('appKey')) ? localStorageService.get('appKey') :''
+        'x-idt-beyond-app-id': idtBeyondSettings.getAppId(),
+        'x-idt-beyond-app-key': idtBeyondSettings.getAppKey()
       };
     };
 
@@ -22,10 +22,10 @@ angular.module('idtbeyondAngularDemoApp')
      * checkbox for plan: Production [x] it will then set the data in local storage and overwrite this
      * default.
      ************************************************************************************************************/
-    var planType = (localStorageService.get('planType')) ? 'Production' : 'Sandbox';
+    var planType = (idtBeyondSettings.getPlanType()) ? 'Production' : 'Sandbox';
     var url = 'https://api.idtbeyond.com';
     var headers = setHeaders();
-    var termId = (localStorageService.get('termId')) ? localStorageService.get('termId') : '';
+    var termId = idtBeyondSettings.getTermId();
 
     this.getProducts = function(){
       return $http.get(url + '/v1/iatu/products/reports/all', {headers: headers});
@@ -37,8 +37,7 @@ angular.module('idtbeyondAngularDemoApp')
 
     this.resetAppData = function(){
       headers = setHeaders();
-      termId = (localStorageService.get('termId')) ? localStorageService.get('termId') : '';
-
+      termId = idtBeyondSettings.getTermId();
     };
 
     this.validateNumber = function(phoneNumber, countryCode){
@@ -61,12 +60,12 @@ angular.module('idtbeyondAngularDemoApp')
     };
 
     var generateClientTransactionId = function(){
-      return (localStorageService.get('appId')) ? localStorageService.get('appId').concat(
+      return (idtBeyondSettings.getAppId()) ? idtBeyondSettings.getAppId().concat(
         '-', ('000000' + Math.floor(Math.random() * (999999 - 1) + 1)).slice(-6)): null;
     };
 
     this.developmentMode = function(){
-      return !!localStorageService.get('developmentMode');
+      return !!idtBeyondSettings.getDevelopmentMode();
     };
 
     this.postTopup = function(params){

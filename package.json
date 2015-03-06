@@ -1,0 +1,29 @@
+{
+  "name": "idtbeyond-angular",
+  "version": "0.1.0",
+  "description": "Angular services module that can be used to interact with the IDT Beyond API to post a topup.",
+  "main": "dist/idtbeyond.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IDTLabs/IDTBeyond-Angular"
+  },
+  "keywords": [
+    "angular",
+    "angularjs",
+    "IDT",
+    "Beyond",
+    "IDTBeyond"
+  ],
+  "author": "Robbie Holmes <robbiethegeek@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IDTLabs/IDTBeyond-Angular/issues"
+  },
+  "homepage": "https://github.com/IDTLabs/IDTBeyond-Angular"
+}
