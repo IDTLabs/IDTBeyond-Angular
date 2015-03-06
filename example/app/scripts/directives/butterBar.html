@@ -1,0 +1,8 @@
+<div ng-show="message">
+  <p
+    class="alert"
+    ng-class="{'alert-danger': alert.alertDanger, 'alert-success': alert.alertSuccess, 'alert-info': alert.alertInfo, 'alert-warning': alert.alertWarning}">
+    {{ message }}
+    <button class="pull-right" ng-click="clearMessage()">x</button>
+  </p>
+</div>

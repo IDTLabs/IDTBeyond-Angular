@@ -12,6 +12,7 @@ angular.module('idtbeyondAngularDemoApp')
     var vm = this;
     vm.products = {};
     vm.countries = {};
+    vm.alert = {};
 
     vm.inDevMode = IdtBeyond.developmentMode();
     vm.appDetailsSet = IdtBeyond.credentialsSet();
@@ -19,34 +20,34 @@ angular.module('idtbeyondAngularDemoApp')
     var setAlertLevel = function(level){
 		switch (level){
 			case 'danger':
-				vm.alertDanger = true;
-				vm.alertSuccess = false;
-				vm.alertInfo = false;
-				vm.alertWarning = false;
+				vm.alert.alertDanger = true;
+				vm.alert.alertSuccess = false;
+				vm.alert.alertInfo = false;
+				vm.alert.alertWarning = false;
 				return;
 			case 'info':
-				vm.alertInfo = true;
-				vm.alertSuccess = false;
-				vm.alertDanger = false;
-				vm.alertWarning = false;
+				vm.alert.alertInfo = true;
+				vm.alert.alertSuccess = false;
+				vm.alert.alertDanger = false;
+				vm.alert.alertWarning = false;
 				return;
 			case 'success':
-				vm.alertSuccess = true;
-				vm.alertDanger = false;
-				vm.alertInfo = false;
-				vm.alertWarning = false;
+				vm.alert.alertSuccess = true;
+				vm.alert.alertDanger = false;
+				vm.alert.alertInfo = false;
+				vm.alert.alertWarning = false;
 				return;
 			case 'warning':
-				vm.alertWarning = true;
-				vm.alertSuccess = false;
-				vm.alertDanger = false;
-				vm.alertInfo = false;
+				vm.alert.alertWarning = true;
+				vm.alert.alertSuccess = false;
+				vm.alert.alertDanger = false;
+				vm.alert.alertInfo = false;
 				return;
 			default:
-				vm.alertSuccess = false;
-				vm.alertDanger = false;
-				vm.alertInfo = false;
-				vm.alertWarning = false;
+				vm.alert.alertSuccess = false;
+				vm.alert.alertDanger = false;
+				vm.alert.alertInfo = false;
+				vm.alert.alertWarning = false;
 				return;
 		}
 	};
@@ -104,15 +105,15 @@ angular.module('idtbeyondAngularDemoApp')
         /* jshint ignore:start */
         vm.localValueAmount = results.local_amount;
         vm.localValueCurrency = results.local_currency;
-        vm.localValueDivisor = results.local_divisor;
+        vm.localValueDivisor = results.divisor;
         /* jshint ignore:end */
         vm.localValueResults = results;
-        vm.message = 'Estimated local value:'.concat((parseInt(vm.localValueAmount) / parseInt(vm.localValueDivisor)).toFixed(2),' ', vm.localValueCurrency);
+        vm.message = 'Estimated local value: '.concat((parseInt(vm.localValueAmount) / parseInt(vm.localValueDivisor)).toFixed(2),' ', vm.localValueCurrency);
         setAlertLevel('info');
       }).error(function(err){
         vm.localValueResults = {};
         vm.message = err.error;
-        vm.alertDanger = true;
+        setAlertLevel('danger');
         vm.localValueAmount = null;
         vm.localValueCurrency = null;
       });
@@ -187,10 +188,6 @@ angular.module('idtbeyondAngularDemoApp')
       return;
     };
 
-    vm.clearMessage = function(){
-      vm.message = '';
-      setAlertLevel();
-    };
     vm.resetCarrierValues = function(all){
       if (all){
         vm.selectedCarrierCode = '';

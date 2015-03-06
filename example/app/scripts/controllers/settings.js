@@ -19,34 +19,34 @@ angular.module('idtbeyondAngularDemoApp')
   var setAlertLevel = function(level){
     switch (level){
       case 'danger':
-        vm.alertDanger = true;
-        vm.alertSuccess = false;
-        vm.alertInfo = false;
-        vm.alertWarning = false;
+        vm.alert.alertDanger = true;
+        vm.alert.alertSuccess = false;
+        vm.alert.alertInfo = false;
+        vm.alert.alertWarning = false;
         return;
       case 'info':
-        vm.alertInfo = true;
-        vm.alertSuccess = false;
-        vm.alertDanger = false;
-        vm.alertWarning = false;
+        vm.alert.alertInfo = true;
+        vm.alert.alertSuccess = false;
+        vm.alert.alertDanger = false;
+        vm.alert.alertWarning = false;
         return;
       case 'success':
-        vm.alertSuccess = true;
-        vm.alertDanger = false;
-        vm.alertInfo = false;
-        vm.alertWarning = false;
+        vm.alert.alertSuccess = true;
+        vm.alert.alertDanger = false;
+        vm.alert.alertInfo = false;
+        vm.alert.alertWarning = false;
         return;
       case 'warning':
-        vm.alertWarning = true;
-        vm.alertSuccess = false;
-        vm.alertDanger = false;
-        vm.alertInfo = false;
+        vm.alert.alertWarning = true;
+        vm.alert.alertSuccess = false;
+        vm.alert.alertDanger = false;
+        vm.alert.alertInfo = false;
         return;
       default:
-        vm.alertSuccess = false;
-        vm.alertDanger = false;
-        vm.alertInfo = false;
-        vm.alertWarning = false;
+        vm.alert.alertSuccess = false;
+        vm.alert.alertDanger = false;
+        vm.alert.alertInfo = false;
+        vm.alert.alertWarning = false;
         return;
     }
   };
@@ -59,7 +59,6 @@ angular.module('idtbeyondAngularDemoApp')
       vm.developmentMode = null;
       switch (alertType){
         case 'danger':
-          vm.alertDanger = true;
           setAlertLevel('danger');
           return;
         case 'info':
@@ -72,19 +71,13 @@ angular.module('idtbeyondAngularDemoApp')
 
     // Variables setup to be used in the browser off the controller object vm.
     var vm = this;
+    vm.alert = {};
     vm.appId = localStorageService.get('appId');
     vm.appKey = localStorageService.get('appKey');
     vm.developmentMode = (localStorageService.get('developmentMode')) ? true : false;
     vm.termId = localStorageService.get('termId');
     vm.planType = (localStorageService.get('planType')) ? 1 : 0;
     vm.message = '';
-
-    vm.clearMessage = function(){
-      vm.message = '';
-      vm.alertDanger = false;
-      vm.alertSuccess = false;
-      vm.alertInfo = false;
-    };
 
     vm.resetApplicationData = function(){
       localStorageService.clearAll();

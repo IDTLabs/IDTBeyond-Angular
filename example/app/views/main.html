@@ -9,14 +9,7 @@
 <div class="row marketing">
 
   <!-- Message area -->
-  <div ng-show="vm.message">
-    <p
-    	class="alert"
-    	ng-class="{'alert-danger': vm.alertDanger, 'alert-success': vm.alertSuccess, 'alert-info': vm.alertInfo, 'alert-warning': vm.alertWarning}">
-      {{ vm.message }}
-      <button class="pull-right" ng-click="vm.clearMessage()">x</button>
-    </p>
-  </div>
+  <butter-bar message="vm.message" alert-level="vm.alert"></butter-bar>
   <!-- End of message area -->
 
   <!-- Topup form -->
