@@ -15,11 +15,11 @@ angular.module('idtbeyondAngularDemoApp')
         'x-idt-beyond-app-key': (localStorageService.get('appKey')) ? localStorageService.get('appKey') :''
       };
     };
-    
+
     /************************************************************************************************************
      *  planType is a variable that will determine if you are pointing to eaither your sandbox account or
-     * your production account, it will default to sandbox, if you visit the settings page and click the 
-     * checkbox for plan: Production [x] it will then set the data in local storage and overwrite this 
+     * your production account, it will default to sandbox, if you visit the settings page and click the
+     * checkbox for plan: Production [x] it will then set the data in local storage and overwrite this
      * default.
      ************************************************************************************************************/
     var planType = (localStorageService.get('planType')) ? 'Production' : 'Sandbox';
