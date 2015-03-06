@@ -94,7 +94,7 @@ angular.module('idtbeyondAngularDemoApp')
           }
         });
       }
-      
+
       IdtBeyond.getLocalValue({
         carrierCode: vm.selectedCarrierCode,
         countryCode: vm.selectedCountryCode,
@@ -104,9 +104,10 @@ angular.module('idtbeyondAngularDemoApp')
         /* jshint ignore:start */
         vm.localValueAmount = results.local_amount;
         vm.localValueCurrency = results.local_currency;
+        vm.localValueDivisor = results.local_divisor;
         /* jshint ignore:end */
         vm.localValueResults = results;
-        vm.message = 'Estimated local value:'.concat(vm.localValueAmount,' ', vm.localValueCurrency);
+        vm.message = 'Estimated local value:'.concat((parseInt(vm.localValueAmount) / parseInt(vm.localValueDivisor)).toFixed(2),' ', vm.localValueCurrency);
         setAlertLevel('info');
       }).error(function(err){
         vm.localValueResults = {};
@@ -222,6 +223,8 @@ angular.module('idtbeyondAngularDemoApp')
             products[countryCode][carrierCode].maxDenomination = product.maxDenomination;
           }
           products[countryCode][carrierCode].values.push({
+              currencySymbol: product.currencySymbol,
+              currencyDivisor: product.currencyDivisor,
               minDenomination: product.minDenomination,
               maxDenomination: product.maxDenomination
           });

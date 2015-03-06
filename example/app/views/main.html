@@ -55,9 +55,12 @@
       </div>
         <select
         	class="form-control"
-        	ng-model="vm.selectedAmount"
-        	ng-options="v.minDenomination as v.minDenomination  for (k, v) in vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].values">
-    		  <option class='hidden' value="">select an amount</option>
+        	ng-model="vm.selectedAmount">
+    		  <option
+            ng-repeat="(key, value) in vm.products[vm.selectedCountryCode][vm.selectedCarrierCode].values"
+            value="{{ value.minDenomination }}">
+            {{ value.minDenomination / 100 | currency }}
+          </option>
     		</select>
       </div><!-- amount -->
 
