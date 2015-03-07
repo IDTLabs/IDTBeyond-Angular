@@ -10,11 +10,8 @@
  */
 angular
   .module('idtbeyondAngularDemoApp', [
-    'ngMessages',
     'ngResource',
     'ngRoute',
-    'ngSanitize',
-    'ngTouch',
     'LocalStorageModule'
   ])
   .config(function(localStorageServiceProvider){
