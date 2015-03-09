@@ -3,10 +3,11 @@ IDTBeyond Angular Demo App
 
 This is an example Angular application for the IDT Beyond API. 
 
+[![npm version](https://badge.fury.io/js/idtbeyond-angular.svg)](http://badge.fury.io/js/idtbeyond-angular)
 [![Join the chat at https://gitter.im/IDTLabs/IDTBeyond-Angular](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/IDTLabs/IDTBeyond-Angular?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Circle CI](https://circleci.com/gh/IDTLabs/IDTBeyond-Angular/tree/master.svg?style=svg)](https://circleci.com/gh/IDTLabs/IDTBeyond-Angular/tree/master)
 [![Code Climate](https://codeclimate.com/github/IDTLabs/IDTBeyond-Angular/badges/gpa.svg)](https://codeclimate.com/github/IDTLabs/IDTBeyond-Angular)
-[![NPM](https://nodei.co/npm/idtbeyond-angular.png?mini=true)](https://nodei.co/npm/idtbeyond-angular/)
+[![Bower version](https://badge.fury.io/bo/idtbeyond-angular.svg)](http://badge.fury.io/bo/idtbeyond-angular)
 
 ## Getting started with IDT Beyond
 
