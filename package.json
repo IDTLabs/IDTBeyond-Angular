@@ -1,6 +1,6 @@
 {
   "name": "idtbeyond-angular",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Angular services module that can be used to interact with the IDT Beyond API to post a topup.",
   "main": "dist/idtbeyond.js",
   "directories": {
