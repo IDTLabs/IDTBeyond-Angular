@@ -1,8 +1,9 @@
 {
   "name": "IDTBeyond-Angular",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "authors": [
-    "Robbie Holmes (robbiethegeek@gmail.com)"
+    "Robbie Holmes (robbiethegeek@gmail.com)",
+    "Zev Mo Green (zev.green@idt.net)"
   ],
   "description": "Example service for use with the IDT Beyond API to post a topup.",
   "main": "dist/idtBeyond.js",
