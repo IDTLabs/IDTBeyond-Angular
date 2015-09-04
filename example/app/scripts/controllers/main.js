@@ -202,9 +202,9 @@ angular.module('idtbeyondAngularDemoApp')
       IdtBeyond.getProducts().then(function(results){
         var products = {};
         angular.forEach(results.data , function(product){
-          vm.countries[product.countryCode] = product.country;
-          var countryCode = product.countryCode;
-          var carrierCode = product.carrierCode;
+          vm.countries[product.country_code] = product.country;
+          var countryCode = product.country_code;
+          var carrierCode = product.carrier_code;
           if (!products[countryCode]){
             products[countryCode] = {};
           }
@@ -214,18 +214,19 @@ angular.module('idtbeyondAngularDemoApp')
               openRange: false
             };
           }
-          if (product.maxDenomination !== product.minDenomination){
+          if (product.max_denomination !== product.min_denomination){
             products[countryCode][carrierCode].openRange = true;
-            products[countryCode][carrierCode].minDenomination = product.minDenomination;
-            products[countryCode][carrierCode].maxDenomination = product.maxDenomination;
+            products[countryCode][carrierCode].minDenomination = product.min_denomination;
+            products[countryCode][carrierCode].maxDenomination = product.max_denomination;
           }
           products[countryCode][carrierCode].values.push({
-              currencySymbol: product.currencySymbol,
-              currencyDivisor: product.currencyDivisor,
-              minDenomination: product.minDenomination,
-              maxDenomination: product.maxDenomination
+              //currencySymbol: product.currencySymbol,
+              //currencyDivisor: product.currencyDivisor,
+              minDenomination: product.min_denomination,
+              maxDenomination: product.max_denomination
           });
         });
+        
         vm.products = products;
       });
     }
