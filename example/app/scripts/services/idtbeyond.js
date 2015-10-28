@@ -23,7 +23,7 @@ angular.module('idtbeyondAngularDemoApp')
      * default.
      ************************************************************************************************************/
     var planType = (idtBeyondSettings.getPlanType()) ? 'Production' : 'Sandbox';
-    var url = 'https://api.idtbeyond.com';
+    var url = 'http://localhost:3002';
     var headers = setHeaders();
     var termId = idtBeyondSettings.getTermId();
 
@@ -71,7 +71,8 @@ angular.module('idtbeyondAngularDemoApp')
     this.postTopup = function(params){
       return $http.post(
         url.concat('/v1/iatu/topups'),
-        {'country_code': params.countryCode,
+        { 'product_code': params.productCode,
+          'country_code': params.countryCode,
           'carrier_code': params.carrierCode,
           'mobile_number': params.phoneNumber,
           'plan': planType,

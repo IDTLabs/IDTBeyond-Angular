@@ -93,6 +93,16 @@
         </div><!-- /input-group -->
     </div><!-- number -->
 
+    <div class="form-group col-md-12 col-sm-12 col-xs-12 col-lg-12">
+      <div>
+        <label class="control-label">Product Code (Optional) :</label>
+      </div>
+        <div class="input-group">
+          <input name='productCode' class="form-control" ng-model="vm.productCode" type="text" placeholder="Product Code"/>
+        </div><!-- /input-group -->
+    </div><!-- number -->
+
+
     <button
       class="btn btn-success btn-lg pull-right"
       ng-click="vm.prepareTopup()"
@@ -123,11 +133,12 @@
     <div><strong>Carrier: </strong>{{ vm.selectedCarrierCode }}</div>
     <div><strong>Amount: </strong>{{ vm.selectedAmount }}</div>
     <div><strong>Phone Number: </strong>{{ vm.phoneNumber }}</div>
+    <div><strong>Product Code: </strong>{{ vm.productCode }}</div>
   </div>
   <div class="panel-footer">
     <button class="btn btn-warning btn-md" ng-click="vm.cancelTopup()">Back</button>
     <button class="btn btn-danger btn-md" ng-click="vm.resetAllValues()">Cancel</button>
-    <button class="btn btn-success btn-md pull-right" ng-click="vm.submitTopup()">Submit Topup</button>
+    <button class="btn btn-success btn-md pull-right" ng-click="vm.submitTopup()" ng-disabled="vm.isSubmitting">Submit Topup</button>
   </div>
 </div>
 

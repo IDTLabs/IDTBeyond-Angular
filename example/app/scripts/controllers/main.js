@@ -152,24 +152,35 @@ angular.module('idtbeyondAngularDemoApp')
     };
 
     vm.submitTopup = function() {
+      vm.isSubmitting = true;
       if (!vm.selectedAmount && !vm.selectedCarrierCode && !vm.selectedCountryCode && !vm.phoneNumber){
         return false;
       }
       IdtBeyond.postTopup({
+        productCode: vm.productCode,
         carrierCode: vm.selectedCarrierCode,
         countryCode: vm.selectedCountryCode,
         amount: vm.selectedAmount,
         currencyCode: 'USD',
         phoneNumber: vm.phoneNumber
       }).success(function(results){
+        vm.isSubmitting = false;
         vm.message = 'Topup successfully submitted, client transaction id: '.
           concat(results.client_transaction_id, '.'); // jshint ignore:line
         setAlertLevel('success');
         resetAllValues();
       }).error(function(err){
+        vm.isSubmitting = false;
         vm.topUpPrepared = false;
-        vm.message = 'Error: '.concat(err.error);
         setAlertLevel('danger');
+        // catch 'b2b' error
+        if (err instanceof Error) {
+          vm.message = 'Error: '.concat(err.error);
+        }else{
+          var msg = 'Error processing Topup: '
+          msg += err.messages.length ? err.messages[0].message : 'Unknown error ';
+          vm.message = msg;
+        }
       });
     };
 
