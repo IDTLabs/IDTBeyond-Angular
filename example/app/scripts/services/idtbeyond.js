@@ -23,7 +23,7 @@ angular.module('idtbeyondAngularDemoApp')
      * default.
      ************************************************************************************************************/
     var planType = (idtBeyondSettings.getPlanType()) ? 'Production' : 'Sandbox';
-    var url = 'http://localhost:3002';
+    var url = 'https://api.idtbeyond.com';
     var headers = setHeaders();
     var termId = idtBeyondSettings.getTermId();
 
